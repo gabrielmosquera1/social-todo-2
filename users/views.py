@@ -7,18 +7,15 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
     
+# Register new users 
 def register(request):
-    # return render(request,
-    # print request.POST['fl_name']
+    
     if request.POST['password'] == request.POST['password_confirmation']:
        User.objects.create_user(request.POST['fl_name'], request.POST['email'], request.POST['password'])
 
     return login_view(request)
-    
-    
-    
-    # pass
 
+# Validate username and password and log user in
 def login_view(request):
     email = request.POST['email']
     password = request.POST['password']
@@ -27,26 +24,20 @@ def login_view(request):
         if user.is_active:
             login(request, user)
             # Redirect to a success page.
-            return redirect('/tasks')
+            return redirect('/tasks', {"user" : user})
         else:
                 return render(request, 'index.html', {"errors" : "User is not active"})
     else:
-        # Return an 'invalid login' error message.
-        # ...
         print("entrou")
         myUserEmail =  User.objects.filter(email = email).first()
         print(myUserEmail)
-        # myUserPassword = User.objects.filter(password = password)
         if myUserEmail is None:
             return render(request, 'index.html', {"errors" : "Invalid email"})
         else:
             return render(request, 'index.html', {"errors" : "Invalid password"})
     
-    # return redirect('/tasks')
-    
-    # pass
 
 def logout_view(request):
-    # logout(request)
-    # render(request, '/')
-    pass
+    logout(request)
+    return redirect('/')
+    

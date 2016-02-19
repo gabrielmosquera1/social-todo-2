@@ -17,20 +17,20 @@
 <h1 class="outsideTheBox">TheTaskManager</h1>
 <br>
 
-{#
+
  {#% if errors %#}
 <div align="center" style="color:red" class="validation-error">
     {#%errors%#}
 </div>
  {#% endif %#}
-#}
+
 
  {#% if currentUser %#}
-    <h2 class="outsideTheBox">Welcome, {{user.name}}</h2>
+    <h2 class="outsideTheBox">Welcome, {{user.username}}</h2>
     <div>
         <h4 class="outsideTheBox">Your Tasks</h4>
 
-        {% if tasks %}
+        {#% if tasks %#}
             
             {# {{#each tasks}} #}
             
@@ -91,7 +91,7 @@
 
 
 <footer>
-    <a href="/user/logout" class="login login-submit" class="logout">Logout</a>
+    <a href="/users/logout" class="login login-submit" class="logout">Logout</a>
 </footer>
 </body>
 </html>
