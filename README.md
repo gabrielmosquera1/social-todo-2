@@ -34,3 +34,7 @@ To access the functioning website, go to
 https://social-todo-part-2-gabrielmosquera1.c9users.io
 ```
 If the link is not working, please email gabriel.simoes@yale.edu
+
+The app should pass all tests but, sometimes, it fails the "name too short test"
+
+for no apparent reason. If you try manually, you'll see the right tag.
