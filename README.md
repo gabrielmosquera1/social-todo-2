@@ -29,4 +29,3 @@ python manage.py runserver 0.0.0.0:$PORT
 ```
 
 Then you can click "Preview" in the c9 interface to see your running application.
-Off to the races.
