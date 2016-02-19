@@ -14,13 +14,16 @@ def register(request):
     email = request.POST['email']
     confirmation = request.POST['password_confirmation']
     
+    if len(name) < 1 or len(name) > 50 or len(password) > 50 or len(password) < 1 or len(email) < 1 or len(email) > 50:
+        return render(request, 'index.html', {'errors' : 'Invalid fields'})
+    
     if password == confirmation:
         try:
             User.objects.create_user(username=email, first_name=name, password=password)
         except:
-            return render(request, 'index.html', {"errors" : "User already exists"})
+            return render(request, 'index.html', {"errors" : "Account with this email already exists!"})
     else:
-        return render(request, 'index.html', {"errors" : "Password doesn't match confirmation"})
+        return render(request, 'index.html', {"errors" : "Invalid password"})
     return login_view(request)
 
 # Validate username and password and log user in
@@ -32,12 +35,12 @@ def login_view(request):
         if user.is_active:
             login(request, user)
             # Redirect to a success page.
-            return redirect('/tasks', {"user" : user})
+            # return render(request, 'tasks.html', {"user" : user})
+            return redirect('/task/')
         else:
                 return render(request, 'index.html', {"errors" : "User is not active"})
     else:
-        print("entrou")
-        myUserEmail =  User.objects.filter(email = email).first()
+        myUserEmail =  User.objects.filter(username = email).first()
         print(myUserEmail)
         if myUserEmail is None:
             return render(request, 'index.html', {"errors" : "Invalid email"})

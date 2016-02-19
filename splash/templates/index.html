@@ -26,7 +26,7 @@
 
 <div class="login-card">
    <h1>Log-in</h1>
-   <form action="/users/login" method="POST">
+   <form action="/user/login" method="POST">
       {% csrf_token %}
       <input name="email" id="email" type="text" placeholder="Email"><br>
       <input name="password"  id="password" type="text" placeholder="Password"><br>
@@ -39,7 +39,7 @@
 
 <div class="login-card">
    <h1>Register</h1>
-    <form class="register" action="/users/register" method="POST" class="signup-form" style="display: block;">
+    <form class="register" action="/user/register" method="POST" class="signup-form" style="display: block;">
       {% csrf_token %}
       <input name="fl_name" type="text" class="text-input" placeholder="first &amp; last name">
       <input name="email" type="text" class="text-input" placeholder="email">
@@ -50,7 +50,7 @@
 </div>
 
 <footer>
-    <a href="/users/logout" class="login login-submit" class="logout">Logout</a>
+    <a href="/user/logout" class="login login-submit" class="logout">Logout</a>
 </footer>
 </body>
 </html>    

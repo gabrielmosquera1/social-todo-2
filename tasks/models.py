@@ -10,4 +10,7 @@ class Task(models.Model):
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=5000)
     collaborators = models.ManyToManyField(User, related_name="tasks")
-
+    isComplete = models.BooleanField()
+    
+    def __repr__(self):
+        return '<Task %r>' % self.id
