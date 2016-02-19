@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CPSC113 Todo</title>
+    <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+    <link rel='stylesheet', href='/stylesheets/style.css'>
+</head>
+<body background: url(https://dl.dropboxusercontent.com/u/23299152/Wallpapers/wallpaper-22705.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Roboto', sans-serif;>
+
+
+<h1 class="outsideTheBox">TheTaskManager</h1>
+<br>
+
+
+{% if errors %}
+   <div align="center" style="color:red" class="validation-error">
+      {{errors}}
+   </div>
+{% endif %}
+
+<div class="login-card">
+   <h1>Log-in</h1>
+   <form action="/users/login" method="POST">
+      {% csrf_token %}
+      <input name="email" id="email" type="text" placeholder="Email"><br>
+      <input name="password"  id="password" type="text" placeholder="Password"><br>
+      <input type="submit" class="log-in-submit login login-submit">
+   </form>
+</div>
+
+<h1 class="outsideTheBox">Or</h1>
+
+
+<div class="login-card">
+   <h1>Register</h1>
+    <form class="register" action="/users/register" method="POST" class="signup-form" style="display: block;">
+      {% csrf_token %}
+      <input name="fl_name" type="text" class="text-input" placeholder="first &amp; last name">
+      <input name="email" type="text" class="text-input" placeholder="email">
+      <input name="password" type="password" class="text-input" placeholder="password">
+      <input name="password_confirmation" type="password" class="text-input" placeholder="password confirmation">
+      <input class="sign-up-submit login login-submit" type="submit">
+    </form>
+</div>
+
+<footer>
+    <a href="/users/logout" class="login login-submit" class="logout">Logout</a>
+</footer>
+</body>
+</html>    

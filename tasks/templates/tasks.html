@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CPSC113 Todo</title>
+    <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+    <link rel='stylesheet', href='/stylesheets/style.css'>
+</head>
+<body background: url(https://dl.dropboxusercontent.com/u/23299152/Wallpapers/wallpaper-22705.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Roboto', sans-serif;>
+
+
+<h1 class="outsideTheBox">TheTaskManager</h1>
+<br>
+
+{#
+ {#% if errors %#}
+<div align="center" style="color:red" class="validation-error">
+    {#%errors%#}
+</div>
+ {#% endif %#}
+#}
+
+ {#% if currentUser %#}
+    <h2 class="outsideTheBox">Welcome, {{user.name}}</h2>
+    <div>
+        <h4 class="outsideTheBox">Your Tasks</h4>
+
+        {% if tasks %}
+            
+            {# {{#each tasks}} #}
+            
+            {# {% if isComplete %} #}
+               <div class="tasks-list-item complete-task task-card">
+            {# {{else}} #}
+               <div class="tasks-list-item task-card">
+            {# {{/if}} #}
+               <span class="tasks-list-desc task-title" ><h3>{{this.title}}</h3>{{this.description}}</span>
+      
+                  {# {{#if isOwner}} #}
+                      <form action="/task/delete" method="POST">
+                        <input type="hidden" name="ownerTask" value={{this.owner}}>
+                        <input type="hidden" name="taskId" value={{this.id}}>
+                        <input type="submit" name="delete-task" class="delete-task" value="Delete">
+                      </form>
+                  {# {{/if}} #}
+                  
+                  {# {{#if isComplete}} #}
+                     <div class="">
+                        <form action="/task/complete" method="POST">
+                           <input type="hidden" name="ownerTask" value={{this.owner}}>
+                           <input type="hidden" name="taskId" value={{this.id}}>
+                           <input type="submit" name="toggle-task" class="toggle-task login-submit" value="Complete">
+                        </form>
+                     </div>
+                  {# {{else}} #}
+                     <form action="/task/complete" method="POST">
+                        <input type="hidden" name="ownerTask" value={{this.owner}}>
+                        <input type="hidden" name="taskId" value={{this.id}}>
+                        <input type="hidden" name="completeTask" value={{this.isComplete}}>
+                        <input type="submit" name="toggle-task" class="toggle-task" value="Incomplete">
+                     </form>
+                  {# {{/if}} #}
+                </div>
+            {# {{/each}} #}
+            {# {{!--</ul>--}} #}
+        {# {{else}} #}
+            <h4 class="outsideTheBox">No tasks to show!</h4>
+        {# {{/if}} #}
+    </div>
+
+    <div class="task-card">
+        <h1>Add a new task</h1>
+        <form action="/task/create" method="POST">
+            <label for="title">Task title</label>
+            <input name="title" type="text"><br>
+            <label for="description">Task Description</label>
+            <input name="description" type="text"><br>
+            Collaborators<br>
+            <input name="collaborator1" type="text"><br>
+            <input name="collaborator2" type="text"><br>
+            <input name="collaborator3" type="text"><br>
+            <input type="submit" class="create-task-submit login login-submit">
+        </form>
+    </div>
+
+
+
+<footer>
+    <a href="/user/logout" class="login login-submit" class="logout">Logout</a>
+</footer>
+</body>
+</html>
