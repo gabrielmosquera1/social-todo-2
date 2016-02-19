@@ -33,3 +33,4 @@ To access the functioning website, go to
 ```
 https://social-todo-part-2-gabrielmosquera1.c9users.io
 ```
+If the link is not working, please email gabriel.simoes@yale.edu
