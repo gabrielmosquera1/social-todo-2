@@ -26,7 +26,7 @@
 
 
  {#% if currentUser %#}
-    <h2 class="outsideTheBox">Welcome, {{user.username}}</h2>
+    <h2 class="outsideTheBox">Welcome, {{user.first_name}}</h2>
     <div>
         <h4 class="outsideTheBox">Your Tasks</h4>
 
@@ -67,7 +67,6 @@
                   {# {{/if}} #}
                 </div>
             {# {{/each}} #}
-            {# {{!--</ul>--}} #}
         {# {{else}} #}
             <h4 class="outsideTheBox">No tasks to show!</h4>
         {# {{/if}} #}

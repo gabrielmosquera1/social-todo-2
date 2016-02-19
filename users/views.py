@@ -9,21 +9,18 @@ from django.contrib.auth.decorators import login_required
     
 # Register new users 
 def register(request):
-    email = request.POST['email']
+    name = request.POST['fl_name']
     password = request.POST['password']
-    username = request.POST['fl_name']
+    email = request.POST['email']
     confirmation = request.POST['password_confirmation']
-    # myUserEmail =  User.objects.filter(email = email).first()
-    # if email == myUserEmail:
-    #     return render(request, 'index.html', {"errors" : "User already exists"})
-    # else:
+    
     if password == confirmation:
         try:
-            User.objects.create_user(username, email, password)
+            User.objects.create_user(username=email, first_name=name, password=password)
         except:
             return render(request, 'index.html', {"errors" : "User already exists"})
-            
-
+    else:
+        return render(request, 'index.html', {"errors" : "Password doesn't match confirmation"})
     return login_view(request)
 
 # Validate username and password and log user in
