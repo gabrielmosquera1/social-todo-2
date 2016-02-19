@@ -1,8 +1,6 @@
-# Social todo Django starter code
+# Social todo number 2!
 
-We wrote this in office hours. It defines the models for tasks,
-migrations, etc. It is based on the 
-[Django tutorial](https://docs.djangoproject.com/en/1.9/intro/).
+This app was written using Django and, consequently, Python.
 
 To install this on c9, clone the repository. Then, before you run it
 for the first time, you'd do

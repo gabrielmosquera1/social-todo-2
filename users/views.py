@@ -47,7 +47,7 @@ def login_view(request):
         else:
             return render(request, 'index.html', {"errors" : "Invalid password"})
     
-
+# Log user out
 def logout_view(request):
     logout(request)
     return redirect('/')

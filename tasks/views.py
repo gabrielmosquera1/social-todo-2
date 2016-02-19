@@ -4,11 +4,14 @@ from models import Task, User
 from django.db.models import Q
 
 # Create your views here.
+
+# Load all the user's tasks and render the task page
 def index(request):
     tasks = Task.objects.filter(Q(owner=request.user) | Q(collaborators=request.user)).distinct()
     return render(request, 'tasks.html', {'tasks' : tasks})
 
 
+# Allows user to create a new task and saves it into the database
 def create(request):
     if request.user.is_authenticated():
         newTask = Task(
@@ -38,18 +41,18 @@ def create(request):
         if col3 is not None:
             newTask.collaborators.add(col3)
         
-        # newTask.save()
-        
         return redirect('/task/')
     
     else:
         return render(request, "index.html", {"errors" : "User is not authenticated"});
-    
+
+# Delete a task from the database
 def remove(request):
     Task.objects.filter(id=request.POST['taskId']).delete()
     
     return redirect('/task/')
-    
+
+# Mark an incomplete task as completed and vice-versa
 def complete(request):
     print("complete!")
     task = Task.objects.filter(id=request.POST['taskId']).first()
