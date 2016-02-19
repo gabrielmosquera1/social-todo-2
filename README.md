@@ -27,3 +27,9 @@ python manage.py runserver 0.0.0.0:$PORT
 ```
 
 Then you can click "Preview" in the c9 interface to see your running application.
+
+To access the functioning website, go to
+
+```
+https://social-todo-part-2-gabrielmosquera1.c9users.io
+```
